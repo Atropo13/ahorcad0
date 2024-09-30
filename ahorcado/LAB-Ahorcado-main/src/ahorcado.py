@@ -1,4 +1,3 @@
-
 import random
 
 def cargar_palabras(ruta):
@@ -77,3 +76,26 @@ def comprobar_palabra_completa(palabra_secreta, letras_probadas):
         if letra not in letras_probadas:
             return False
     return True 
+
+def ejecutar_turno(palabra_secreta, letras_probadas):
+    '''
+    Ejecutar un turno de juego:
+    - Mostrar la palabra enmascarada
+    - Pedir la nueva letra
+    - Comprobar si la letra está en la palabra (acierto) o no (fallo)
+    - Añadir la letra al conjunto de letras probadas
+    - Devolver True si la letra fue un acierto, False si fue un fallo
+    Ayuda:
+    - Recuerda las funciones que ya has implementado para mostrar la palabra, pedir la letra y comprobarla
+    '''
+    print(palabra_secreta)
+    letra_elegida = input("escriba la siguiente letra:").lower()
+    while letra_elegida in letras_probadas:
+        letra_elegida = input("Ya has probado esa letra, ponga otra:").lower()
+    letras_probadas.add(letra_elegida)
+    for letra in palabra_secreta:
+        if letra not in letras_probadas:
+            return False
+        else:
+            return True
+            
