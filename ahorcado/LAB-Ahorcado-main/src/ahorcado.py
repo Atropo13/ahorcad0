@@ -120,5 +120,6 @@ if __name__ == "__main__":
     elif modo_juego == "elegir palabra":
         palabra_elegida = elegir_palabra_jugador()
     print(palabra_elegida)
+    enmascarar_palabra(palabra_elegida,letras_probadas)
 
 
