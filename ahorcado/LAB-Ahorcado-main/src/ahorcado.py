@@ -101,11 +101,11 @@ def ejecutar_turno(palabra_secreta, letras_probadas):
 
 
 def eleccion_modo():
-    modo_juego = input("¿ A que quieres jugar?, elejir palabra o palabra aleatoria:")
+    modo_juego = input("¿ A que quieres jugar?, elegir palabra o palabra aleatoria:")
     while modo_juego not in ["elegir palabra", "palabra aleatoria"]:
 
-       palabra = input("porfavor elija: elegir palabra o palabra aleatoria:" )
-    return palabra
+       modo_juego = input("porfavor elija: elegir palabra o palabra aleatoria:" )
+    return modo_juego
 
 def elegir_palabra_jugador():
     palabra = input("que palabra elijes:")
@@ -115,7 +115,7 @@ def elegir_palabra_jugador():
 if __name__ == "__main__":
     modo_juego = eleccion_modo()
     if modo_juego == "palabra aleatoria":
-        palabras = cargar_palabras()
+        palabras = cargar_palabras("ahorcado/LAB-Ahorcado-main\data\palabras_ahorcado.txt")
         palabra_elegida = elegir_palabra(palabras)
     elif modo_juego == "elegir palabra":
         palabra_elegida = elegir_palabra_jugador()
