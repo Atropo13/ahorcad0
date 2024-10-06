@@ -113,13 +113,22 @@ def elegir_palabra_jugador():
 
 
 if __name__ == "__main__":
+   
+    letras_probadas = []
     modo_juego = eleccion_modo()
     if modo_juego == "palabra aleatoria":
         palabras = cargar_palabras("ahorcado/LAB-Ahorcado-main\data\palabras_ahorcado.txt")
         palabra_elegida = elegir_palabra(palabras)
     elif modo_juego == "elegir palabra":
         palabra_elegida = elegir_palabra_jugador()
-    print(palabra_elegida)
-    enmascarar_palabra(palabra_elegida,letras_probadas)
+    palabra_escondida = enmascarar_palabra(palabra_elegida,letras_probadas)
+    print(palabra_escondida)
+    while comprobar_palabra_completa(palabra_elegida, letras_probadas) == False:
+        pedir_letra(letras_probadas)
+        palabra_escondida = enmascarar_palabra(palabra_elegida,letras_probadas)
+        print(palabra_escondida)
+        
+   
+
 
 
