@@ -123,8 +123,10 @@ if __name__ == "__main__":
         palabra_elegida = elegir_palabra_jugador()
     palabra_escondida = enmascarar_palabra(palabra_elegida,letras_probadas)
     print(palabra_escondida)
+    print(palabra_elegida)
     while comprobar_palabra_completa(palabra_elegida, letras_probadas) == False:
-        pedir_letra(letras_probadas)
+        letras_probadas += pedir_letra(letras_probadas)
+        acierto = comprobar_letra(palabra_elegida,letras_probadas)
         palabra_escondida = enmascarar_palabra(palabra_elegida,letras_probadas)
         print(palabra_escondida)
         
