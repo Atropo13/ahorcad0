@@ -49,6 +49,7 @@ def pedir_letra(letras_probadas):
     letra_elegida = input("escriba la siguiente letra:").lower()
     while letra_elegida in letras_probadas:
         letra_elegida = input("Ya has probado esa letra, ponga otra:").lower()
+        
     return letra_elegida
 
 def comprobar_letra(palabra_secreta, letra):
@@ -111,9 +112,15 @@ def elegir_palabra_jugador():
     palabra = input("que palabra elijes:")
     return palabra
 
+def fallo(turnos, acierto):
+    if acierto == False:
+        turnos -= 1
+    else:
+        turnos = turnos
+    return turnos
 
 if __name__ == "__main__":
-   
+    turnos = int(input("cuantos turnos quieres jugar? "))
     letras_probadas = []
     modo_juego = eleccion_modo()
     if modo_juego == "palabra aleatoria":
@@ -123,12 +130,28 @@ if __name__ == "__main__":
         palabra_elegida = elegir_palabra_jugador()
     palabra_escondida = enmascarar_palabra(palabra_elegida,letras_probadas)
     print(palabra_escondida)
-    print(palabra_elegida)
-    while comprobar_palabra_completa(palabra_elegida, letras_probadas) == False:
-        letras_probadas += pedir_letra(letras_probadas)
-        acierto = comprobar_letra(palabra_elegida,letras_probadas)
-        palabra_escondida = enmascarar_palabra(palabra_elegida,letras_probadas)
-        print(palabra_escondida)
+    
+    if turnos > 0:
+        while comprobar_palabra_completa(palabra_elegida, letras_probadas) == False:
+           if turnos > 0:
+                letra = pedir_letra(letras_probadas)
+                letras_probadas.append(letra)
+                acierto = comprobar_letra(palabra_elegida, letra)
+                turnos = fallo(turnos, acierto)
+                palabra_escondida = enmascarar_palabra(palabra_elegida, letras_probadas)
+                print(palabra_escondida) 
+                if turnos == 1:
+                    print("te queda", turnos, "turno")  
+                else:
+                    print("te quedan", turnos, "turnos")
+           else:
+                print("Has perdido, te quedaste sin turnos")
+                break
+        if comprobar_palabra_completa(palabra_elegida, letras_probadas) == True:      
+            print("Has ganado, felicidades")    
+   
+   
+    
         
    
 
